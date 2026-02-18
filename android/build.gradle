@@ -18,19 +18,19 @@ def safeExtGet(prop, fallback) {
 
 android {
   compileSdkVersion safeExtGet('compileSdkVersion', 34)
-  
+
   namespace "io.linkio.reactnative"
 
   defaultConfig {
     minSdkVersion safeExtGet('minSdkVersion', 21)
     targetSdkVersion safeExtGet('targetSdkVersion', 34)
   }
-  
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
   }
-  
+
   kotlinOptions {
     jvmTarget = '17'
   }
@@ -44,5 +44,5 @@ repositories {
 
 dependencies {
   implementation 'com.facebook.react:react-native:+'
-  implementation 'com.github.yourusername:LinkIO-Android:1.0.0'
+  implementation 'com.github.pt-nakul-sharma:LinkIO-Android:1.0.0'
 }

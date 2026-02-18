@@ -40,18 +40,43 @@ yarn add @pt-nakul-sharma/linkio-react-native
 
 ### iOS Setup
 
+**1. Add LinkIO iOS SDK to your Podfile:**
+
+```ruby
+# Add to your ios/Podfile
+pod 'LinkIO', :git => 'https://github.com/pt-nakul-sharma/LinkIO-iOS.git', :tag => '1.0.0'
+```
+
+**2. Install pods:**
+
 ```bash
 cd ios && pod install
 ```
 
-Add associated domains in Xcode:
+**3. Add associated domains in Xcode:**
 
 1. Target → Signing & Capabilities → Add "Associated Domains"
 2. Add: `applinks:yourdomain.com`
 
 ### Android Setup
 
-No additional setup required. The package will automatically link.
+**1. Add JitPack repository to your root `build.gradle`:**
+
+```gradle
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+**2. The LinkIO Android SDK dependency is automatically included via:**
+
+```gradle
+implementation 'com.github.pt-nakul-sharma:LinkIO-Android:1.0.0'
+```
+
+**3. Ensure your `AndroidManifest.xml` includes deep link handling** (see full documentation)
 
 ## 📱 Quick Start
 
