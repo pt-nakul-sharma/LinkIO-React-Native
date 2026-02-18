@@ -28,7 +28,11 @@
     "type": "git",
     "url": "https://github.com/pt-nakul-sharma/LinkIO-React-Native.git"
   },
-  "author": "Nakul Sharma <nakulsharma.1296@gmail.com>",
+  "author": {
+    "name": "Nakul Sharma",
+    "email": "nakulsharma.1296@gmail.com",
+    "url": "https://github.com/pt-nakul-sharma"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pt-nakul-sharma/LinkIO-React-Native/issues"
