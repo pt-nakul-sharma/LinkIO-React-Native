@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@linkio/react-native.svg)](https://www.npmjs.com/package/@linkio/react-native)
 [![npm downloads](https://img.shields.io/npm/dm/@linkio/react-native.svg)](https://www.npmjs.com/package/@linkio/react-native)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/yourusername/LinkIO-React-Native/workflows/CI/badge.svg)](https://github.com/yourusername/LinkIO-React-Native/actions)
+[![CI](https://github.com/pt-nakul-sharma/LinkIO-React-Native/workflows/CI/badge.svg)](https://github.com/pt-nakul-sharma/LinkIO-React-Native/actions)
 
 React Native bridge for LinkIO deep linking SDK. **Self-hosted alternative to Branch.io**.
 
@@ -209,9 +209,9 @@ See [example/EXAMPLE.md](./example/EXAMPLE.md) for detailed instructions.
 
 ## 🔗 Related Packages
 
-- **Backend**: [LinkIO-Backend](https://github.com/yourusername/LinkIO-Backend)
-- **iOS Native**: [LinkIO-iOS](https://github.com/yourusername/LinkIO-iOS)
-- **Android Native**: [LinkIO-Android](https://github.com/yourusername/LinkIO-Android)
+- **Backend**: [LinkIO-Backend](https://github.com/pt-nakul-sharma/LinkIO-Backend)
+- **iOS Native**: [LinkIO-iOS](https://github.com/pt-nakul-sharma/LinkIO-iOS)
+- **Android Native**: [LinkIO-Android](https://github.com/pt-nakul-sharma/LinkIO-Android)
 
 ## 🛠️ Requirements
 
@@ -227,7 +227,7 @@ Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.m
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/LinkIO-React-Native.git
+git clone https://github.com/pt-nakul-sharma/LinkIO-React-Native.git
 cd LinkIO-React-Native
 
 # Install dependencies
@@ -243,18 +243,16 @@ npm run prepare
 ## 💬 Support
 
 - 📖 [Documentation](./API.md)
-- 🐛 [Report a Bug](https://github.com/yourusername/LinkIO-React-Native/issues)
-- 💡 [Request a Feature](https://github.com/yourusername/LinkIO-React-Native/issues)
-- 💬 [Discussions](https://github.com/yourusername/LinkIO-React-Native/discussions)
+- 🐛 [Report a Bug](https://github.com/pt-nakul-sharma/LinkIO-React-Native/issues)
+- 💡 [Request a Feature](https://github.com/pt-nakul-sharma/LinkIO-React-Native/issues)
+- 💬 [Discussions](https://github.com/pt-nakul-sharma/LinkIO-React-Native/discussions)
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT
 
 ## ⭐ Show Your Support
 
 Give a ⭐️ if this project helped you!
 
 ---
-
-**Note**: Replace `yourusername` and `Your Name` with your actual GitHub username and name before publishing.
