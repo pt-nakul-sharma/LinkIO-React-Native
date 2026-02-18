@@ -60,23 +60,30 @@ cd ios && pod install
 
 ### Android Setup
 
-**1. Add JitPack repository to your root `build.gradle`:**
+**1. Clone and include LinkIO Android SDK:**
+
+```bash
+# Clone the LinkIO Android SDK
+cd android
+git clone https://github.com/pt-nakul-sharma/LinkIO-Android.git
+```
+
+**2. Add to your app's `settings.gradle`:**
 
 ```gradle
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
+include ':LinkIO-Android'
+project(':LinkIO-Android').projectDir = new File(rootProject.projectDir, '../node_modules/@pt-nakul-sharma/linkio-react-native/android/LinkIO-Android')
+```
+
+**3. Add dependency to your app's `build.gradle`:**
+
+```gradle
+dependencies {
+    implementation project(':LinkIO-Android')
 }
 ```
 
-**2. The LinkIO Android SDK dependency is automatically included via:**
-
-```gradle
-implementation 'com.github.pt-nakul-sharma:LinkIO-Android:1.0.0'
-```
-
-**3. Ensure your `AndroidManifest.xml` includes deep link handling** (see full documentation)
+**4. Ensure your `AndroidManifest.xml` includes deep link handling** (see full documentation)
 
 ## 📱 Quick Start
 

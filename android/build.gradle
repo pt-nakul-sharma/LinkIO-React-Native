@@ -44,5 +44,6 @@ repositories {
 
 dependencies {
   implementation 'com.facebook.react:react-native:+'
-  implementation 'com.github.pt-nakul-sharma:LinkIO-Android:+'
+  // LinkIO Android SDK - Users need to add this to their app's build.gradle
+  // See README for installation instructions from GitHub
 }
