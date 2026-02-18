@@ -5,6 +5,12 @@ lib/
 .vscode/
 .idea/
 
+# Test coverage
+coverage/
+
+# Internal docs
+JITPACK_PUBLISHING.md
+
 # iOS
 ios/build/
 ios/Pods/
