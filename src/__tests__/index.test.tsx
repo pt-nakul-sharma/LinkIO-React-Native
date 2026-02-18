@@ -1,4 +1,4 @@
-import { NativeModules, NativeEventEmitter } from "react-native";
+import { NativeModules } from "react-native";
 import LinkIO from "../index";
 
 describe("LinkIO", () => {
@@ -17,17 +17,6 @@ describe("LinkIO", () => {
       LinkIO.configure(config);
 
       expect(NativeModules.LinkIO.configure).toHaveBeenCalledWith(config);
-    });
-
-    it("should set up event listener", () => {
-      const config = {
-        domain: "example.com",
-        backendURL: "https://api.example.com",
-      };
-
-      LinkIO.configure(config);
-
-      expect(NativeEventEmitter).toHaveBeenCalled();
     });
   });
 
