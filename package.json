@@ -1,5 +1,5 @@
 {
-  "name": "@linkio/react-native",
+  "name": "@pt-nakul-sharma/linkio-react-native",
   "version": "1.0.0",
   "description": "React Native bridge for LinkIO deep linking SDK",
   "main": "lib/commonjs/index",

@@ -5,7 +5,7 @@ Complete API documentation for the LinkIO React Native SDK.
 ## Installation
 
 ```bash
-npm install @linkio/react-native
+npm install @pt-nakul-sharma/linkio-react-native
 ```
 
 ## Table of Contents
@@ -24,29 +24,29 @@ Initialize the LinkIO SDK with your configuration. Must be called before using a
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `config` | `LinkIOConfig` | Yes | Configuration object |
+| Parameter | Type           | Required | Description          |
+| --------- | -------------- | -------- | -------------------- |
+| `config`  | `LinkIOConfig` | Yes      | Configuration object |
 
 #### LinkIOConfig
 
 ```typescript
 interface LinkIOConfig {
-  domain: string;                    // Your domain (e.g., 'yourdomain.com')
-  backendURL: string;                // Your backend API URL
-  autoCheckPendingLinks?: boolean;   // Auto-check on launch (default: true)
+  domain: string; // Your domain (e.g., 'yourdomain.com')
+  backendURL: string; // Your backend API URL
+  autoCheckPendingLinks?: boolean; // Auto-check on launch (default: true)
 }
 ```
 
 #### Example
 
 ```typescript
-import LinkIO from '@linkio/react-native';
+import LinkIO from "@pt-nakul-sharma/linkio-react-native";
 
 LinkIO.configure({
-  domain: 'yourdomain.com',
-  backendURL: 'https://api.yourdomain.com',
-  autoCheckPendingLinks: true
+  domain: "yourdomain.com",
+  backendURL: "https://api.yourdomain.com",
+  autoCheckPendingLinks: true,
 });
 ```
 
@@ -66,9 +66,9 @@ Set a callback function to receive deep link events.
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `listener` | `DeepLinkListener` | Yes | Callback function |
+| Parameter  | Type               | Required | Description       |
+| ---------- | ------------------ | -------- | ----------------- |
+| `listener` | `DeepLinkListener` | Yes      | Callback function |
 
 #### DeepLinkListener
 
@@ -80,9 +80,9 @@ type DeepLinkListener = (deepLink: DeepLinkData) => void;
 
 ```typescript
 interface DeepLinkData {
-  url: string;                      // Full deep link URL
-  params: Record<string, string>;   // Parsed query parameters
-  isDeferred: boolean;              // True if deferred deep link
+  url: string; // Full deep link URL
+  params: Record<string, string>; // Parsed query parameters
+  isDeferred: boolean; // True if deferred deep link
 }
 ```
 
@@ -90,21 +90,21 @@ interface DeepLinkData {
 
 ```typescript
 LinkIO.setDeepLinkListener((deepLink) => {
-  console.log('Deep link URL:', deepLink.url);
-  console.log('Parameters:', deepLink.params);
-  console.log('Is deferred:', deepLink.isDeferred);
+  console.log("Deep link URL:", deepLink.url);
+  console.log("Parameters:", deepLink.params);
+  console.log("Is deferred:", deepLink.isDeferred);
 
   // Handle referral code
   if (deepLink.params.referralCode) {
-    navigation.navigate('Signup', {
-      referralCode: deepLink.params.referralCode
+    navigation.navigate("Signup", {
+      referralCode: deepLink.params.referralCode,
     });
   }
 
   // Handle product link
   if (deepLink.params.productId) {
-    navigation.navigate('Product', {
-      id: deepLink.params.productId
+    navigation.navigate("Product", {
+      id: deepLink.params.productId,
     });
   }
 });
@@ -133,16 +133,16 @@ Manually check for pending/deferred deep links. Useful for checking after user l
 // Check after user logs in
 const handleLogin = async (credentials) => {
   await login(credentials);
-  await LinkIO.checkPendingLink();  // Check for deferred links
+  await LinkIO.checkPendingLink(); // Check for deferred links
 };
 
 // Check manually on button press
 const checkForLinks = async () => {
   try {
     await LinkIO.checkPendingLink();
-    console.log('Checked for pending links');
+    console.log("Checked for pending links");
   } catch (error) {
-    console.error('Error checking links:', error);
+    console.error("Error checking links:", error);
   }
 };
 ```
@@ -161,15 +161,15 @@ Manually handle a deep link URL. iOS only - Android handles this automatically.
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `url` | `string` | Yes | Deep link URL to handle |
+| Parameter | Type     | Required | Description             |
+| --------- | -------- | -------- | ----------------------- |
+| `url`     | `string` | Yes      | Deep link URL to handle |
 
 #### Example
 
 ```typescript
 // Manually handle a URL (iOS)
-LinkIO.handleURL('https://yourdomain.com/ref/ABC123?campaign=summer');
+LinkIO.handleURL("https://yourdomain.com/ref/ABC123?campaign=summer");
 ```
 
 #### Notes
@@ -188,11 +188,11 @@ Track a referral conversion when a user signs up or completes a desired action.
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `referralCode` | `string` | Yes | The referral code from deep link |
-| `userId` | `string` | Yes | Unique identifier for the new user |
-| `metadata` | `Record<string, string>` | No | Additional tracking data |
+| Parameter      | Type                     | Required | Description                        |
+| -------------- | ------------------------ | -------- | ---------------------------------- |
+| `referralCode` | `string`                 | Yes      | The referral code from deep link   |
+| `userId`       | `string`                 | Yes      | Unique identifier for the new user |
+| `metadata`     | `Record<string, string>` | No       | Additional tracking data           |
 
 #### Returns
 
@@ -202,37 +202,29 @@ Track a referral conversion when a user signs up or completes a desired action.
 
 ```typescript
 // Basic referral tracking
-await LinkIO.trackReferral('REF123', 'user456');
+await LinkIO.trackReferral("REF123", "user456");
 
 // With metadata
-await LinkIO.trackReferral(
-  'REF123',
-  'user456',
-  {
-    source: 'mobile-app',
-    campaign: 'spring-2024',
-    platform: 'ios'
-  }
-);
+await LinkIO.trackReferral("REF123", "user456", {
+  source: "mobile-app",
+  campaign: "spring-2024",
+  platform: "ios",
+});
 
 // In signup flow
 const handleSignup = async (userData) => {
   try {
     const user = await createUser(userData);
-    
+
     // Track referral if code exists
     if (referralCode) {
-      await LinkIO.trackReferral(
-        referralCode,
-        user.id,
-        {
-          source: 'signup-page',
-          timestamp: new Date().toISOString()
-        }
-      );
+      await LinkIO.trackReferral(referralCode, user.id, {
+        source: "signup-page",
+        timestamp: new Date().toISOString(),
+      });
     }
   } catch (error) {
-    console.error('Signup error:', error);
+    console.error("Signup error:", error);
   }
 };
 ```
@@ -256,8 +248,8 @@ Remove event listeners and clean up resources. Call when unmounting or no longer
 useEffect(() => {
   // Setup
   LinkIO.configure({
-    domain: 'yourdomain.com',
-    backendURL: 'https://api.yourdomain.com'
+    domain: "yourdomain.com",
+    backendURL: "https://api.yourdomain.com",
   });
 
   LinkIO.setDeepLinkListener(handleDeepLink);
@@ -307,7 +299,7 @@ interface LinkIOSDK {
   trackReferral(
     referralCode: string,
     userId: string,
-    metadata?: Record<string, string>
+    metadata?: Record<string, string>,
   ): Promise<void>;
   checkPendingLink(): Promise<void>;
   handleURL(url: string): void;
@@ -324,10 +316,11 @@ interface LinkIOSDK {
 #### Module Not Linked
 
 ```
-The package '@linkio/react-native' doesn't seem to be linked
+The package '@pt-nakul-sharma/linkio-react-native' doesn't seem to be linked
 ```
 
 **Solution:**
+
 - iOS: Run `cd ios && pod install`
 - Rebuild the app after installation
 
@@ -336,12 +329,13 @@ The package '@linkio/react-native' doesn't seem to be linked
 If `configure()` is not called before other methods, operations may fail silently.
 
 **Solution:**
+
 ```typescript
 // Always configure first
 useEffect(() => {
   LinkIO.configure({
-    domain: 'yourdomain.com',
-    backendURL: 'https://api.yourdomain.com'
+    domain: "yourdomain.com",
+    backendURL: "https://api.yourdomain.com",
   });
 }, []);
 ```
@@ -349,11 +343,13 @@ useEffect(() => {
 #### Deep Links Not Working
 
 **iOS:**
+
 - Ensure Associated Domains are configured
 - Verify `apple-app-site-association` file exists
 - Check AppDelegate includes RCTLinkingManager
 
 **Android:**
+
 - Ensure intent filter has `android:autoVerify="true"`
 - Verify `.well-known/assetlinks.json` exists
 - Check AndroidManifest.xml configuration
@@ -365,9 +361,9 @@ useEffect(() => {
 const trackUserReferral = async (code: string, userId: string) => {
   try {
     await LinkIO.trackReferral(code, userId);
-    console.log('Referral tracked successfully');
+    console.log("Referral tracked successfully");
   } catch (error) {
-    console.error('Failed to track referral:', error);
+    console.error("Failed to track referral:", error);
     // Handle error appropriately
   }
 };
@@ -377,7 +373,7 @@ const checkLinks = async () => {
   try {
     await LinkIO.checkPendingLink();
   } catch (error) {
-    console.error('Error checking links:', error);
+    console.error("Error checking links:", error);
   }
 };
 
@@ -386,7 +382,7 @@ LinkIO.setDeepLinkListener((deepLink) => {
   try {
     handleDeepLinkNavigation(deepLink);
   } catch (error) {
-    console.error('Error handling deep link:', error);
+    console.error("Error handling deep link:", error);
   }
 });
 ```
@@ -398,15 +394,15 @@ LinkIO.setDeepLinkListener((deepLink) => {
 ### React Hook Wrapper
 
 ```typescript
-import { useEffect, useState } from 'react';
-import LinkIO, { DeepLinkData } from '@linkio/react-native';
+import { useEffect, useState } from "react";
+import LinkIO, { DeepLinkData } from "@pt-nakul-sharma/linkio-react-native";
 
 export function useLinkIO(config) {
   const [deepLink, setDeepLink] = useState<DeepLinkData | null>(null);
 
   useEffect(() => {
     LinkIO.configure(config);
-    
+
     LinkIO.setDeepLinkListener((data) => {
       setDeepLink(data);
     });
@@ -422,8 +418,8 @@ export function useLinkIO(config) {
 // Usage
 function App() {
   const { deepLink } = useLinkIO({
-    domain: 'yourdomain.com',
-    backendURL: 'https://api.yourdomain.com'
+    domain: "yourdomain.com",
+    backendURL: "https://api.yourdomain.com",
   });
 
   useEffect(() => {
@@ -437,7 +433,7 @@ function App() {
 ### Navigation Integration
 
 ```typescript
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 function useDeepLinking() {
   const navigation = useNavigation();
@@ -445,7 +441,7 @@ function useDeepLinking() {
   useEffect(() => {
     LinkIO.setDeepLinkListener((deepLink) => {
       const { screen, ...params } = deepLink.params;
-      
+
       if (screen) {
         navigation.navigate(screen, params);
       }
@@ -459,11 +455,11 @@ function useDeepLinking() {
 ```typescript
 LinkIO.setDeepLinkListener((deepLink) => {
   // Track in analytics
-  analytics.track('deep_link_opened', {
+  analytics.track("deep_link_opened", {
     url: deepLink.url,
     is_deferred: deepLink.isDeferred,
     campaign: deepLink.params.campaign,
-    source: deepLink.params.source
+    source: deepLink.params.source,
   });
 
   // Handle navigation
@@ -494,6 +490,7 @@ LinkIO.setDeepLinkListener((deepLink) => {
 ## Support
 
 For issues, questions, or contributions:
+
 - GitHub: [LinkIO-React-Native](https://github.com/yourusername/LinkIO-React-Native)
 - Issues: [Report a bug](https://github.com/yourusername/LinkIO-React-Native/issues)
 - Documentation: [Full Docs](https://github.com/yourusername/LinkIO-React-Native#readme)

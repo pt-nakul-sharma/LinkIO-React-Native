@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -9,32 +9,32 @@ import {
   TouchableOpacity,
   View,
   Alert,
-} from 'react-native';
-import LinkIO, { DeepLinkData } from '@linkio/react-native';
+} from "react-native";
+import LinkIO, { DeepLinkData } from "@pt-nakul-sharma/linkio-react-native";
 
 function App(): JSX.Element {
   const [deepLink, setDeepLink] = useState<DeepLinkData | null>(null);
-  const [referralCode, setReferralCode] = useState('');
-  const [userId, setUserId] = useState('');
+  const [referralCode, setReferralCode] = useState("");
+  const [userId, setUserId] = useState("");
   const [isConfigured, setIsConfigured] = useState(false);
 
   useEffect(() => {
     LinkIO.configure({
-      domain: 'yourdomain.com',
-      backendURL: 'https://api.yourdomain.com',
+      domain: "yourdomain.com",
+      backendURL: "https://api.yourdomain.com",
       autoCheckPendingLinks: true,
     });
     setIsConfigured(true);
 
     LinkIO.setDeepLinkListener((data: DeepLinkData) => {
-      console.log('Deep link received:', data);
+      console.log("Deep link received:", data);
       setDeepLink(data);
 
       if (data.params.referralCode) {
         setReferralCode(data.params.referralCode);
         Alert.alert(
-          'Referral Code Detected',
-          `Auto-filled referral code: ${data.params.referralCode}`
+          "Referral Code Detected",
+          `Auto-filled referral code: ${data.params.referralCode}`,
         );
       }
     });
@@ -46,18 +46,18 @@ function App(): JSX.Element {
 
   const handleTrackReferral = async () => {
     if (!referralCode || !userId) {
-      Alert.alert('Error', 'Please enter both referral code and user ID');
+      Alert.alert("Error", "Please enter both referral code and user ID");
       return;
     }
 
     try {
       await LinkIO.trackReferral(referralCode, userId, {
-        source: 'example-app',
-        platform: 'react-native',
+        source: "example-app",
+        platform: "react-native",
       });
-      Alert.alert('Success', 'Referral tracked successfully!');
+      Alert.alert("Success", "Referral tracked successfully!");
     } catch (error) {
-      Alert.alert('Error', 'Failed to track referral');
+      Alert.alert("Error", "Failed to track referral");
       console.error(error);
     }
   };
@@ -65,15 +65,15 @@ function App(): JSX.Element {
   const handleCheckPendingLink = async () => {
     try {
       await LinkIO.checkPendingLink();
-      Alert.alert('Success', 'Checked for pending links');
+      Alert.alert("Success", "Checked for pending links");
     } catch (error) {
-      Alert.alert('Error', 'Failed to check pending links');
+      Alert.alert("Error", "Failed to check pending links");
       console.error(error);
     }
   };
 
   const handleTestDeepLink = () => {
-    LinkIO.handleURL('https://yourdomain.com/ref/TEST123?campaign=summer');
+    LinkIO.handleURL("https://yourdomain.com/ref/TEST123?campaign=summer");
   };
 
   return (
@@ -83,7 +83,7 @@ function App(): JSX.Element {
         <View style={styles.header}>
           <Text style={styles.title}>LinkIO Example</Text>
           <Text style={styles.subtitle}>
-            {isConfigured ? '✅ Configured' : '⏳ Configuring...'}
+            {isConfigured ? "✅ Configured" : "⏳ Configuring..."}
           </Text>
         </View>
 
@@ -93,7 +93,9 @@ function App(): JSX.Element {
             <Text style={styles.label}>URL:</Text>
             <Text style={styles.value}>{deepLink.url}</Text>
             <Text style={styles.label}>Deferred:</Text>
-            <Text style={styles.value}>{deepLink.isDeferred ? 'Yes' : 'No'}</Text>
+            <Text style={styles.value}>
+              {deepLink.isDeferred ? "Yes" : "No"}
+            </Text>
             <Text style={styles.label}>Params:</Text>
             <Text style={styles.value}>
               {JSON.stringify(deepLink.params, null, 2)}
@@ -120,10 +122,7 @@ function App(): JSX.Element {
             autoCapitalize="none"
           />
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleTrackReferral}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleTrackReferral}>
             <Text style={styles.buttonText}>Track Referral</Text>
           </TouchableOpacity>
         </View>
@@ -159,31 +158,31 @@ function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
   },
   scrollView: {
     padding: 20,
   },
   header: {
     marginBottom: 30,
-    alignItems: 'center',
+    alignItems: "center",
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 20,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -194,55 +193,55 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginBottom: 16,
   },
   label: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#666',
+    fontWeight: "600",
+    color: "#666",
     marginTop: 12,
     marginBottom: 4,
   },
   value: {
     fontSize: 14,
-    color: '#333',
-    fontFamily: 'monospace',
+    color: "#333",
+    fontFamily: "monospace",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
     marginBottom: 12,
-    backgroundColor: '#fafafa',
+    backgroundColor: "#fafafa",
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     borderRadius: 8,
     padding: 16,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 8,
   },
   secondaryButton: {
-    backgroundColor: '#5856D6',
+    backgroundColor: "#5856D6",
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   footer: {
     marginTop: 20,
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   footerText: {
     fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
+    color: "#666",
+    textAlign: "center",
   },
 });
 

@@ -1,7 +1,7 @@
-# @linkio/react-native
+# @pt-nakul-sharma/linkio-react-native
 
-[![npm version](https://img.shields.io/npm/v/@linkio/react-native.svg)](https://www.npmjs.com/package/@linkio/react-native)
-[![npm downloads](https://img.shields.io/npm/dm/@linkio/react-native.svg)](https://www.npmjs.com/package/@linkio/react-native)
+[![npm version](https://img.shields.io/npm/v/@pt-nakul-sharma/linkio-react-native.svg)](https://www.npmjs.com/package/@pt-nakul-sharma/linkio-react-native)
+[![npm downloads](https://img.shields.io/npm/dm/@pt-nakul-sharma/linkio-react-native.svg)](https://www.npmjs.com/package/@pt-nakul-sharma/linkio-react-native)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/pt-nakul-sharma/LinkIO-React-Native/workflows/CI/badge.svg)](https://github.com/pt-nakul-sharma/LinkIO-React-Native/actions)
 
@@ -33,9 +33,9 @@ React Native bridge for LinkIO deep linking SDK. **Self-hosted alternative to Br
 ## � Installation
 
 ```bash
-npm install @linkio/react-native
+npm install @pt-nakul-sharma/linkio-react-native
 # or
-yarn add @linkio/react-native
+yarn add @pt-nakul-sharma/linkio-react-native
 ```
 
 ### iOS Setup
@@ -56,7 +56,7 @@ No additional setup required. The package will automatically link.
 ## 📱 Quick Start
 
 ```typescript
-import LinkIO from '@linkio/react-native';
+import LinkIO, { DeepLinkData } from '@pt-nakul-sharma/linkio-react-native';
 import { useEffect } from 'react';
 
 function App() {
