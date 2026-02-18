@@ -1,0 +1,16 @@
+node_modules/
+lib/
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# iOS
+ios/build/
+ios/Pods/
+ios/*.xcworkspace
+ios/*.xcodeproj
+
+# Android
+android/build/
+android/.gradle/

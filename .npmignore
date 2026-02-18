@@ -1,0 +1,29 @@
+# Development files
+example/
+.github/
+.vscode/
+.idea/
+
+# Tests
+__tests__/
+__mocks__/
+__fixtures__/
+*.test.ts
+*.test.tsx
+jest.config.js
+jest.setup.js
+
+# Config files
+.eslintrc.js
+.eslintignore
+.prettierrc
+.watchmanconfig
+tsconfig.json
+
+# Build artifacts
+*.tgz
+.gradle/
+build/
+
+# Documentation
+CONTRIBUTING.md
